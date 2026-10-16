@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="The Soul Flys">
+  <rect width="64" height="64" fill="#0c0a09"/>
+  <circle cx="32" cy="30" r="14" fill="none" stroke="#e8a83a" stroke-width="3"/>
+  <path d="M20 48c6-8 18-8 24 0" fill="none" stroke="#f5efe6" stroke-width="3" stroke-linecap="round"/>
+</svg>
