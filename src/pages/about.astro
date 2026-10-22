@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import { band } from '../data/band';
 ---
 
@@ -8,14 +9,15 @@ import { band } from '../data/band';
   description={`About ${band.name} — ${band.about.headline}`}
   path="/about"
 >
-  <section class="section page-hero">
-    <div class="wrap">
-      <p class="eyebrow animate-in">About</p>
-      <h1 class="animate-in-delay">{band.about.headline}</h1>
-      <p class="lede animate-in-delay-2">{band.about.intro}</p>
-      <p class="animate-in-delay-2">{band.about.motto}</p>
-    </div>
-  </section>
+  <PageHero
+    eyebrow="About"
+    title={band.about.headline}
+    image="/images/hero-about.jpg"
+    imageAlt="The Soul Flys performing live as a full band"
+  >
+    <p class="lede">{band.about.intro}</p>
+    <p>{band.about.motto}</p>
+  </PageHero>
 
   <section class="section section--tight accent-band">
     <div class="wrap narrow">
@@ -53,16 +55,6 @@ import { band } from '../data/band';
 </BaseLayout>
 
 <style>
-  .page-hero h1 {
-    max-width: 16ch;
-  }
-
-  .lede {
-    font-size: 1.2rem;
-    color: var(--fg);
-    max-width: 40rem;
-  }
-
   .narrow {
     max-width: 40rem;
   }

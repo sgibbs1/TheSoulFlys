@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import { galleryItems, videoEmbedUrl } from '../data/gallery';
-import type { GalleryVideo } from '../data/gallery';
+import type { GalleryImage, GalleryVideo } from '../data/gallery';
 ---
 
 <BaseLayout
@@ -9,16 +10,17 @@ import type { GalleryVideo } from '../data/gallery';
   description="Photos and videos from The Soul Flys live."
   path="/gallery"
 >
-  <section class="section page-hero">
-    <div class="wrap">
-      <p class="eyebrow animate-in">Gallery</p>
-      <h1 class="animate-in-delay">Images &amp; video</h1>
-      <p class="animate-in-delay-2">
-        A look at the live energy. Swap placeholders for your photos and YouTube
-        links in <code>src/data/gallery.ts</code>.
-      </p>
-    </div>
-  </section>
+  <PageHero
+    eyebrow="Gallery"
+    title="Images & video"
+    image="/images/hero-gallery.jpg"
+    imageAlt="The Soul Flys full band on stage"
+  >
+    <p>
+      Live shots from a recent outdoor set — featuring photos approved by the
+      band. Add more anytime in <code>src/data/gallery.ts</code>.
+    </p>
+  </PageHero>
 
   <section class="section section--tight">
     <div class="wrap">
@@ -26,7 +28,17 @@ import type { GalleryVideo } from '../data/gallery';
         {
           galleryItems.map((item) =>
             item.type === 'image' ? (
-              <figure class="gallery__item gallery__item--image">
+              <figure
+                class:list={[
+                  'gallery__item',
+                  'gallery__item--image',
+                  {
+                    'gallery__item--zoom-out': (item as GalleryImage).zoomOut,
+                    'gallery__item--zoom-in': (item as GalleryImage).zoomIn,
+                    'gallery__item--half': (item as GalleryImage).half,
+                  },
+                ]}
+              >
                 <img src={item.src} alt={item.alt} loading="lazy" />
                 {item.caption && <figcaption>{item.caption}</figcaption>}
               </figure>
@@ -70,15 +82,76 @@ import type { GalleryVideo } from '../data/gallery';
     overflow: hidden;
   }
 
+  .gallery__item:nth-child(1):not(.gallery__item--zoom-out):not(.gallery__item--zoom-in),
+  .gallery__item:nth-child(2):not(.gallery__item--zoom-out):not(.gallery__item--zoom-in) {
+    grid-column: span 12;
+  }
+
   .gallery__item--image img {
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
+    object-position: center center;
+    background: #0a0807;
     transition: transform 0.55s ease;
+  }
+
+  .gallery__item:nth-child(1):not(.gallery__item--zoom-out):not(.gallery__item--zoom-in) img,
+  .gallery__item:nth-child(2):not(.gallery__item--zoom-out):not(.gallery__item--zoom-in) img {
+    aspect-ratio: 16 / 9;
+  }
+
+  /* Full photo visible — no forced crop */
+  .gallery__item--zoom-out {
+    grid-column: span 12;
+  }
+
+  .gallery__item--zoom-out.gallery__item--half {
+    grid-column: span 6;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .gallery__item--zoom-out img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: min(92vh, 58rem);
+    aspect-ratio: auto;
+    object-fit: contain;
+    object-position: center top;
+    display: block;
+    margin-inline: auto;
+  }
+
+  .gallery__item--zoom-out.gallery__item--half img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    max-height: none;
+    object-fit: contain;
+    object-position: center center;
+    background: #0a0807;
+  }
+
+  /* Tight crop on the drummer */
+  .gallery__item--zoom-in {
+    grid-column: span 6;
+  }
+
+  .gallery__item--zoom-in img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center center;
   }
 
   .gallery__item--image:hover img {
     transform: scale(1.04);
+  }
+
+  .gallery__item--zoom-out:hover img,
+  .gallery__item--zoom-in:hover img {
+    transform: none;
   }
 
   figcaption,
@@ -110,7 +183,9 @@ import type { GalleryVideo } from '../data/gallery';
 
   @media (max-width: 700px) {
     .gallery__item,
-    .gallery__item--video {
+    .gallery__item--video,
+    .gallery__item--zoom-out,
+    .gallery__item--zoom-in {
       grid-column: span 12;
     }
   }

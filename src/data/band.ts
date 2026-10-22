@@ -5,6 +5,12 @@ export const band = {
   phone: '(205) 855-8318',
   phoneHref: 'tel:+12058558318',
   location: 'North Alabama',
+  booking: {
+    headline: 'Available for booking',
+    intro:
+      'Looking for a high-vibe live band? The Soul Flys bring psychedelic soul fusion to stages of every size.',
+    events: ['Weddings', 'Corporate events', 'Festivals', 'Bars & venues'],
+  },
   award: {
     title: "2025 People's Choice Band of the Year",
     detail:
@@ -24,14 +30,15 @@ export const band = {
     motto:
       'Life is too short to live without a bit of fun and funky vibes. The band is dedicated to bringing an unforgettable musical experience that blends soul, funk, and groove.',
     leftOfCenter: {
-      title: 'Left of Center',
-      body: 'The Soul Flys celebrate authentic self-expression through music — stepping outside the box and creating your own vibe, style, and space. Just because something is popular doesn\'t mean it has to be your path.',
+      title: 'Find your frequency',
+      body:
+        'The Soul Flys are all about honest music and a good time. We mix the sounds we love, play from the heart, and invite everyone to lose themselves in the groove with us — no rules, just vibe.',
     },
   },
   members: [
     {
       name: 'Cheryl Christmas',
-      role: 'Band Leader',
+      role: 'Lead Vocalist',
       details: [
         'Classically trained vocalist with a penchant for Rock, Soul, and Blues',
         'Rhythm Guitar',
@@ -41,7 +48,13 @@ export const band = {
     {
       name: 'Shawn Gibbs',
       role: 'Lead Guitar',
-      details: ['Vocals', 'Piano', 'Violin', 'Mandolin', 'Horns'],
+      details: [
+        'Backup Vocalist',
+        'Piano',
+        'Violin',
+        'Mandolin',
+        'Saxophone',
+      ],
     },
     {
       name: 'TJ Cox',
@@ -51,7 +64,14 @@ export const band = {
     {
       name: 'Cody Collum',
       role: 'Keyboard',
-      details: ['Vocals', 'Guitar', 'Banjo', 'Melodica', 'Harmonica', 'Bass'],
+      details: [
+        'Backup Vocalist',
+        'Guitar',
+        'Banjo',
+        'Melodica',
+        'Harmonica',
+        'Bass',
+      ],
     },
     {
       name: 'Billy Bass',

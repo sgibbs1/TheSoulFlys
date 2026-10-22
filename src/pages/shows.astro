@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import { calendar } from '../data/calendar';
 ---
 
@@ -8,14 +9,15 @@ import { calendar } from '../data/calendar';
   description="Upcoming shows for The Soul Flys — live schedule via Google Calendar."
   path="/shows"
 >
-  <section class="section page-hero">
-    <div class="wrap">
-      <p class="eyebrow animate-in">Schedule</p>
-      <h1 class="animate-in-delay">{calendar.title}</h1>
-      <p class="animate-in-delay-2">{calendar.description}</p>
-      <p class="tz animate-in-delay-2">{calendar.timezoneNote}</p>
-    </div>
-  </section>
+  <PageHero
+    eyebrow="Schedule"
+    title={calendar.title}
+    image="/images/hero-shows.jpg"
+    imageAlt="The Soul Flys performing live"
+  >
+    <p>{calendar.description}</p>
+    <p class="tz">{calendar.timezoneNote}</p>
+  </PageHero>
 
   <section class="section section--tight">
     <div class="wrap">

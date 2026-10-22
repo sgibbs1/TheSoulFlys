@@ -6,7 +6,7 @@ import { band } from '../data/band';
 <BaseLayout path="/">
   <section class="hero">
     <div class="hero__media" aria-hidden="true">
-      <img src="/images/hero-placeholder.svg" alt="" />
+      <img src="/images/hero-home.jpg" alt="" />
       <div class="hero__veil"></div>
     </div>
     <div class="wrap hero__content">
@@ -38,9 +38,16 @@ import { band } from '../data/band';
     </div>
   </section>
 
-  <section class="section section--tight">
-    <div class="wrap split">
-      <div>
+  <section class="section section--tight photo-feature">
+    <div class="wrap photo-feature__grid">
+      <figure class="photo-feature__shot">
+        <img
+          src="/images/home-live.jpg"
+          alt="The Soul Flys full band performing live"
+          loading="lazy"
+        />
+      </figure>
+      <div class="photo-feature__copy">
         <p class="eyebrow">Live</p>
         <h2>Come see us</h2>
         <p>
@@ -51,7 +58,19 @@ import { band } from '../data/band';
           <a class="btn" href="/shows">View Schedule</a>
         </div>
       </div>
-      <div>
+    </div>
+  </section>
+
+  <section class="section section--tight photo-feature photo-feature--flip">
+    <div class="wrap photo-feature__grid">
+      <figure class="photo-feature__shot">
+        <img
+          src="/images/home-vocals.jpg"
+          alt="Cheryl Christmas singing live with The Soul Flys"
+          loading="lazy"
+        />
+      </figure>
+      <div class="photo-feature__copy">
         <p class="eyebrow">Sound</p>
         <h2>Soulful nights</h2>
         <p>
@@ -61,7 +80,23 @@ import { band } from '../data/band';
         </p>
         <div class="cta-row">
           <a class="btn btn--ghost" href="/about">Meet the Band</a>
+          <a class="btn btn--ghost" href="/gallery">See More Photos</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section book-home">
+    <div class="wrap book-home__inner">
+      <p class="eyebrow">{band.booking.headline}</p>
+      <h2>Weddings · corporate · festivals · bars</h2>
+      <p>
+        From intimate celebrations to big outdoor stages, The Soul Flys bring the
+        fun frequency wherever the night takes them.
+      </p>
+      <div class="cta-row">
+        <a class="btn" href="/contact">Book the Band</a>
+        <a class="btn btn--ghost" href={band.phoneHref}>Call {band.phone}</a>
       </div>
     </div>
   </section>
@@ -85,7 +120,15 @@ import { band } from '../data/band';
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 40%;
     animation: kenburns 18s ease-out both;
+  }
+
+  /* Phone: keep the lead singer centered; desktop crop unchanged */
+  @media (max-width: 720px) {
+    .hero__media img {
+      object-position: 16% 40%;
+    }
   }
 
   .hero__veil {
@@ -125,15 +168,62 @@ import { band } from '../data/band';
     max-width: 40rem;
   }
 
-  .split {
+  .photo-feature__grid {
     display: grid;
-    gap: 2.5rem;
-    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    grid-template-columns: 1.15fr 1fr;
+    align-items: center;
+  }
+
+  .photo-feature--flip .photo-feature__grid {
+    grid-template-columns: 1fr 1.15fr;
+  }
+
+  .photo-feature--flip .photo-feature__shot {
+    order: 2;
+  }
+
+  .photo-feature--flip .photo-feature__copy {
+    order: 1;
+  }
+
+  .photo-feature__shot {
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+
+  .photo-feature__shot img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .photo-feature__shot:hover img {
+    transform: scale(1.03);
+  }
+
+  .book-home {
+    border-top: 1px solid var(--line);
+    background:
+      linear-gradient(120deg, rgba(232, 168, 58, 0.1), transparent 55%),
+      var(--bg-elevated);
+  }
+
+  .book-home__inner {
+    max-width: 40rem;
   }
 
   @media (max-width: 780px) {
-    .split {
+    .photo-feature__grid,
+    .photo-feature--flip .photo-feature__grid {
       grid-template-columns: 1fr;
+    }
+
+    .photo-feature--flip .photo-feature__shot,
+    .photo-feature--flip .photo-feature__copy {
+      order: unset;
     }
   }
 </style>
