@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { tips } from '../data/tips';
+---
+
+<BaseLayout
+  title="Tip the Band"
+  description="Send a tip to The Soul Flys via Venmo — more tip links coming soon."
+  path="/tip"
+>
+  <PageHero
+    eyebrow="Support"
+    title={tips.headline}
+    image="/images/hero-contact.jpg"
+    imageAlt="The Soul Flys on stage"
+  >
+    <p>{tips.intro}</p>
+  </PageHero>
+
+  <section class="section section--tight">
+    <div class="wrap tip-grid">
+      {
+        tips.methods.map((method) => (
+          <article
+            class:list={[
+              'tip-method',
+              method.status === 'live' && 'tip-method--live',
+            ]}
+          >
+            <p class="eyebrow">
+              {method.status === 'live' ? 'Live now' : 'Coming soon'}
+            </p>
+            <h2>{method.label}</h2>
+            <p>{method.note}</p>
+            {method.qrImage && (
+              <figure class="tip-qr">
+                <img
+                  src={method.qrImage}
+                  alt={method.qrAlt ?? `${method.label} QR code`}
+                  width="480"
+                  height="560"
+                />
+              </figure>
+            )}
+            {method.href ? (
+              <div class="cta-row">
+                <a
+                  class="btn"
+                  href={method.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {method.cta ?? `Open ${method.label}`}
+                </a>
+              </div>
+            ) : (
+              <p class="tip-soon">
+                Link landing when the business profile is ready.
+              </p>
+            )}
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .tip-grid {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1.35fr 1fr 1fr;
+    align-items: start;
+  }
+
+  .tip-method {
+    padding-top: 0.25rem;
+  }
+
+  .tip-method--live {
+    padding: 1.5rem 1.5rem 1.75rem;
+    border: 1px solid var(--line);
+    background:
+      linear-gradient(160deg, rgba(232, 168, 58, 0.08), transparent 55%),
+      var(--bg-elevated);
+  }
+
+  .tip-qr {
+    margin: 1.5rem 0 0;
+    max-width: 18rem;
+    padding: 0.85rem;
+    background: #fff;
+  }
+
+  .tip-qr img {
+    width: 100%;
+    height: auto;
+  }
+
+  .tip-soon {
+    margin-top: 1rem;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+
+  @media (max-width: 900px) {
+    .tip-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
