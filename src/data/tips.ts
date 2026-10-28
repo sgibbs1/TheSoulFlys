@@ -1,7 +1,7 @@
 /**
  * Tip / support links.
- * Venmo QR decoded from the band screenshot → user_id link below.
- * PayPal, Cash App, and business Venmo profiles can replace these later.
+ * Venmo QR decodes to user_id 3542512463513174907 → @Cheryl-Christmas-1.
+ * PayPal, Cash App, and business profiles can replace these later.
  */
 export type TipMethod = {
   id: string;
@@ -23,11 +23,11 @@ export const tips = {
       id: 'venmo',
       label: 'Venmo',
       status: 'live',
-      href: 'https://venmo.com/code?user_id=3147571161333760814',
+      href: 'https://account.venmo.com/u/Cheryl-Christmas-1',
       cta: 'Open Venmo',
       qrImage: '/images/tips/venmo-qr.png',
       qrAlt: 'Venmo QR code for tipping The Soul Flys',
-      note: 'Scan the code in the Venmo app, or tap the button on your phone.',
+      note: 'Scan the code in the Venmo app, or open Cheryl’s Venmo profile with the button.',
     },
     {
       id: 'paypal',
