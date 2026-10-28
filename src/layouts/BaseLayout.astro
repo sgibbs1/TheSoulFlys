@@ -30,8 +30,7 @@ const pageTitle = title === band.name ? title : `${title} | ${band.name}`;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={new URL(path, Astro.site).toString()} />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -43,9 +42,7 @@ const pageTitle = title === band.name ? title : `${title} | ${band.name}`;
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="wrap site-header__inner">
-        <a class="logo" href="/" aria-label={band.name}>
-          <img src="/images/logo.png" alt={band.name} width="160" height="160" />
-        </a>
+        <a class="logo" href="/">{band.name}</a>
         <button
           class="nav-toggle"
           type="button"
@@ -155,22 +152,15 @@ const pageTitle = title === band.name ? title : `${title} | ${band.name}`;
   }
 
   .logo {
-    display: flex;
-    align-items: center;
+    font-family: var(--font-display);
+    font-size: 1.55rem;
+    letter-spacing: 0.08em;
     text-decoration: none;
-    line-height: 0;
+    text-transform: uppercase;
   }
 
-  .logo img {
-    display: block;
-    height: 3.15rem;
-    width: auto;
-    transition: transform 0.25s ease, filter 0.25s ease;
-  }
-
-  .logo:hover img {
-    transform: scale(1.04);
-    filter: brightness(1.08);
+  .logo:hover {
+    color: var(--accent);
   }
 
   .site-nav ul {
