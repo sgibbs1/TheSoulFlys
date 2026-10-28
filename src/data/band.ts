@@ -58,7 +58,7 @@ export const band = {
     },
     {
       name: 'TJ Cox',
-      role: 'Full Total Percussionist',
+      role: 'Drums',
       details: ['Bass', 'Guitar'],
     },
     {
@@ -76,7 +76,7 @@ export const band = {
     {
       name: 'Billy Bass',
       role: 'Bass',
-      details: ['4 / 5 / 6 String Bass', 'Rhythm Guitar', 'Trumpet'],
+      details: ['Rhythm Guitar', 'Trumpet'],
     },
   ],
 } as const;
