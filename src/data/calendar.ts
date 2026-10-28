@@ -3,9 +3,9 @@
  */
 export const calendar = {
   embedUrl:
-    'https://calendar.google.com/calendar/embed?src=79b0099da6285eb58e288c28ebbd21a6f494fe787bf119e1313c327d573549c6%40group.calendar.google.com&ctz=America%2FChicago',
+    'https://calendar.google.com/calendar/embed?src=79b0099da6285eb58e288c28ebbd21a6f494fe787bf119e1313c327d573549c6%40group.calendar.google.com&ctz=America%2FChicago&mode=AGENDA',
   publicUrl:
-    'https://calendar.google.com/calendar/embed?src=79b0099da6285eb58e288c28ebbd21a6f494fe787bf119e1313c327d573549c6%40group.calendar.google.com&ctz=America%2FChicago',
+    'https://calendar.google.com/calendar/embed?src=79b0099da6285eb58e288c28ebbd21a6f494fe787bf119e1313c327d573549c6%40group.calendar.google.com&ctz=America%2FChicago&mode=AGENDA',
   icalUrl:
     'https://calendar.google.com/calendar/ical/79b0099da6285eb58e288c28ebbd21a6f494fe787bf119e1313c327d573549c6%40group.calendar.google.com/public/basic.ics',
   title: 'Upcoming Shows',
