@@ -1,17 +1,16 @@
 /**
- * Paste your public Google Calendar embed URL here.
- * Google Calendar → Settings → Integrate calendar → Embed code → copy the iframe src.
- *
- * Example:
- * https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID&ctz=America%2FChicago
+ * Google Calendar → Settings → Integrate calendar
  */
 export const calendar = {
-  /** Replace with your public calendar embed src when ready. */
   embedUrl:
-    'https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America%2FChicago',
+    'https://calendar.google.com/calendar/embed?src=79b0099da6285eb58e288c28ebbd21a6f494fe787bf119e1313c327d573549c6%40group.calendar.google.com&ctz=America%2FChicago',
+  publicUrl:
+    'https://calendar.google.com/calendar/embed?src=79b0099da6285eb58e288c28ebbd21a6f494fe787bf119e1313c327d573549c6%40group.calendar.google.com&ctz=America%2FChicago',
+  icalUrl:
+    'https://calendar.google.com/calendar/ical/79b0099da6285eb58e288c28ebbd21a6f494fe787bf119e1313c327d573549c6%40group.calendar.google.com/public/basic.ics',
   title: 'Upcoming Shows',
   description:
     'See where The Soul Flys are playing next. Updates happen in Google Calendar — no website rebuild needed.',
   timezoneNote: 'Times shown in Central Time (America/Chicago).',
-  isPlaceholder: true,
+  isPlaceholder: false,
 } as const;
