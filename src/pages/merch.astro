@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { merch, formatPrice } from '../data/merch';
+---
+
+<BaseLayout
+  title="Merch"
+  description="Official The Soul Flys t-shirts — $25 each."
+  path="/merch"
+>
+  <PageHero
+    eyebrow="Merch"
+    title="Wear the frequency"
+    image="/images/hero-gallery.jpg"
+    imageAlt="The Soul Flys full band on stage"
+  >
+    <p>
+      Three official tees, $25 each. Stripe checkout and Shippo shipping rates
+      plug in next — designs are ready now.
+    </p>
+  </PageHero>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <p class="merch-note">{merch.note}</p>
+      <div class="merch-grid">
+        {
+          merch.products.map((product) => (
+            <article class="merch-item" data-product-id={product.id}>
+              <figure class="merch-item__shot">
+                <img
+                  src={product.image}
+                  alt={product.imageAlt}
+                  loading="lazy"
+                  width="800"
+                  height="800"
+                />
+              </figure>
+              <div class="merch-item__copy">
+                <h2>{product.name}</h2>
+                <p class="merch-item__price">{formatPrice(product.priceCents)}</p>
+                <p>{product.description}</p>
+                <button
+                  class="btn"
+                  type="button"
+                  disabled={!merch.checkoutReady}
+                  data-checkout={product.id}
+                >
+                  {merch.checkoutReady ? 'Buy' : 'Checkout soon'}
+                </button>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .merch-note {
+    max-width: 40rem;
+    margin-bottom: 2.5rem;
+    color: var(--fg-muted);
+  }
+
+  .merch-grid {
+    display: grid;
+    gap: 3rem 2rem;
+  }
+
+  .merch-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: center;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .merch-item:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .merch-item:nth-child(even) .merch-item__shot {
+    order: 2;
+  }
+
+  .merch-item__shot {
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: #0a0807;
+  }
+
+  .merch-item__shot img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .merch-item__copy h2 {
+    margin-bottom: 0.35em;
+  }
+
+  .merch-item__price {
+    margin: 0 0 0.85rem;
+    font-family: var(--font-ui);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+  }
+
+  .merch-item__copy .btn {
+    margin-top: 1.25rem;
+  }
+
+  .merch-item__copy .btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  @media (max-width: 780px) {
+    .merch-item {
+      grid-template-columns: 1fr;
+    }
+
+    .merch-item:nth-child(even) .merch-item__shot {
+      order: unset;
+    }
+  }
+</style>
