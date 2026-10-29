@@ -11,7 +11,6 @@ export type MerchProduct = {
 export const merch = {
   currency: 'usd',
   checkoutReady: false,
-  note: 'Checkout with Stripe and live shipping rates via Shippo is coming next. Browse the designs now — payment opens once keys are connected.',
   products: [
     {
       id: 'tee-gold',

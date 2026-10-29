@@ -6,7 +6,7 @@ import { tips } from '../data/tips';
 
 <BaseLayout
   title="Tip the Band"
-  description="Send a tip to The Soul Flys via Venmo — more tip links coming soon."
+  description="Send a tip to The Soul Flys via Venmo."
   path="/tip"
 >
   <PageHero
@@ -22,15 +22,8 @@ import { tips } from '../data/tips';
     <div class="wrap tip-grid">
       {
         tips.methods.map((method) => (
-          <article
-            class:list={[
-              'tip-method',
-              method.status === 'live' && 'tip-method--live',
-            ]}
-          >
-            <p class="eyebrow">
-              {method.status === 'live' ? 'Live now' : 'Coming soon'}
-            </p>
+          <article class="tip-method tip-method--live">
+            <p class="eyebrow">Live now</p>
             <h2>{method.label}</h2>
             <p>{method.note}</p>
             {method.qrImage && (
@@ -43,7 +36,7 @@ import { tips } from '../data/tips';
                 />
               </figure>
             )}
-            {method.href ? (
+            {method.href && (
               <div class="cta-row">
                 <a
                   class="btn"
@@ -54,10 +47,6 @@ import { tips } from '../data/tips';
                   {method.cta ?? `Open ${method.label}`}
                 </a>
               </div>
-            ) : (
-              <p class="tip-soon">
-                Link landing when the business profile is ready.
-              </p>
             )}
           </article>
         ))
@@ -70,12 +59,7 @@ import { tips } from '../data/tips';
   .tip-grid {
     display: grid;
     gap: 2.5rem;
-    grid-template-columns: 1.35fr 1fr 1fr;
-    align-items: start;
-  }
-
-  .tip-method {
-    padding-top: 0.25rem;
+    max-width: 28rem;
   }
 
   .tip-method--live {
@@ -96,20 +80,5 @@ import { tips } from '../data/tips';
   .tip-qr img {
     width: 100%;
     height: auto;
-  }
-
-  .tip-soon {
-    margin-top: 1rem;
-    font-family: var(--font-ui);
-    font-size: 0.85rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--fg-muted);
-  }
-
-  @media (max-width: 900px) {
-    .tip-grid {
-      grid-template-columns: 1fr;
-    }
   }
 </style>
