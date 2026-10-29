@@ -193,12 +193,6 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: 'image',
-    src: '/gallery/g32.jpg',
-    alt: 'The Soul Flys full band performing live',
-    caption: 'All flys on deck',
-  },
-  {
-    type: 'image',
     src: '/gallery/g21.jpg',
     alt: 'Shawn Gibbs and TJ Cox on guitar and drums',
     caption: 'Waterfront night',
@@ -214,12 +208,6 @@ export const galleryItems: GalleryItem[] = [
     src: '/gallery/g30.jpg',
     alt: 'Shawn Gibbs and Cody Collum performing',
     caption: 'Side by side',
-  },
-  {
-    type: 'image',
-    src: '/gallery/g34.jpg',
-    alt: 'The Soul Flys live on the wooden deck',
-    caption: 'Deck show',
   },
   {
     type: 'image',
