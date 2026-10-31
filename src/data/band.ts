@@ -44,15 +44,15 @@ export const band = {
     {
       name: 'Cheryl Christmas',
       role: 'Lead Vocalist',
-      details: [
-        'Classically trained vocalist with a penchant for Rock, Soul, and Blues',
-        'Rhythm Guitar',
-        'Songwriter / Lyricist',
-      ],
+      blurb:
+        'Classically trained powerhouse with a deep penchant for Rock, Soul, and Blues.',
+      details: ['Rhythm Guitar', 'Songwriter / Lyricist'],
     },
     {
       name: 'Shawn Gibbs',
       role: 'Lead Guitar',
+      blurb:
+        "Weaving together searing leads and atmospheric textures to shape the core of the band's fusion sound.",
       details: [
         'Backup Vocalist',
         'Piano',
@@ -64,11 +64,15 @@ export const band = {
     {
       name: 'TJ Cox',
       role: 'Drums',
+      blurb:
+        "The pocket-groove engine driving the band's rhythm with multi-instrumental instinct.",
       details: ['Bass', 'Guitar'],
     },
     {
       name: 'Cody Collum',
       role: 'Keyboard',
+      blurb:
+        'A multi-instrumental wizard layering soulful keys with roots-driven acoustic textures.',
       details: [
         'Backup Vocalist',
         'Guitar',
@@ -79,8 +83,10 @@ export const band = {
       ],
     },
     {
-      name: 'Billy Bass',
+      name: 'Billy Christmas',
       role: 'Bass',
+      blurb:
+        'The driving force at the low end, locking down a heavy, infectious pocket that keeps the room moving.',
       details: ['Rhythm Guitar', 'Trumpet'],
     },
   ],
