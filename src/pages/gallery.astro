@@ -40,7 +40,21 @@ import type { GalleryImage, GalleryVideo } from '../data/gallery';
                   },
                 ]}
               >
-                <img src={item.src} alt={item.alt} loading="lazy" />
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  loading="lazy"
+                  style={
+                    [
+                      (item as GalleryImage).objectPosition &&
+                        `object-position: ${(item as GalleryImage).objectPosition}`,
+                      (item as GalleryImage).aspectRatio &&
+                        `aspect-ratio: ${(item as GalleryImage).aspectRatio}`,
+                    ]
+                      .filter(Boolean)
+                      .join('; ') || undefined
+                  }
+                />
                 {item.caption && <figcaption>{item.caption}</figcaption>}
               </figure>
             ) : (
@@ -111,6 +125,7 @@ import type { GalleryImage, GalleryVideo } from '../data/gallery';
     grid-column: span 6;
     display: flex;
     flex-direction: column;
+    height: 100%;
   }
 
   .gallery__item--zoom-out img {
@@ -127,10 +142,9 @@ import type { GalleryImage, GalleryVideo } from '../data/gallery';
 
   .gallery__item--zoom-out.gallery__item--half img {
     width: 100%;
-    height: auto;
     aspect-ratio: 3 / 4;
     max-height: none;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center center;
     background: #0a0807;
   }
