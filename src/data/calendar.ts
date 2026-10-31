@@ -10,7 +10,7 @@ export const calendar = {
     'https://calendar.google.com/calendar/ical/79b0099da6285eb58e288c28ebbd21a6f494fe787bf119e1313c327d573549c6%40group.calendar.google.com/public/basic.ics',
   title: 'Upcoming Shows',
   description:
-    'See where The Soul Flys are playing next. Updates happen in Google Calendar — no website rebuild needed.',
+    'Catch us live. This is where the magic happens, the volume goes up, and the groove takes over. Find an upcoming show near you, pack the room, and come vibe with us.',
   timezoneNote: 'Times shown in Central Time (America/Chicago).',
   isPlaceholder: false,
 } as const;

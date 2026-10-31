@@ -2,6 +2,27 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import { band, socials } from '../data/band';
+
+const eventTypes = [...band.booking.events, 'Private party', 'Other'];
+const venueSizes = [
+  'Under 50 guests',
+  '50–100 guests',
+  '100–200 guests',
+  '200–400 guests',
+  '400+ guests',
+  'Not sure yet',
+];
+const soundOptions = [
+  'We need the band to provide sound',
+  'Sound is furnished by the venue / us',
+  'Not sure — need guidance',
+];
+const lightingOptions = [
+  'Lighting required from the band',
+  'Lighting furnished by venue / us',
+  'Minimal / none needed',
+  'Not sure yet',
+];
 ---
 
 <BaseLayout
@@ -16,17 +37,185 @@ import { band, socials } from '../data/band';
     imageAlt="The Soul Flys on stage"
   >
     <p>
-      {band.booking.intro} Reach out for bookings and inquiries.
+      Let&rsquo;s bring the vibe to your next event. Whether you&rsquo;re booking
+      a packed club night, a corporate event, a festival stage, or a wedding,
+      we&rsquo;re ready to deliver an unforgettable night of live music. Drop us a
+      line below with your date and details, and let&rsquo;s start planning the
+      party.
     </p>
   </PageHero>
 
   <section class="section section--tight book-types">
-    <div class="wrap">
+    <div class="wrap book-types__inner">
       <p class="eyebrow">{band.booking.headline}</p>
-      <h2>Book the flys</h2>
+      <h2>Book the Soul Flys</h2>
       <ul class="event-list">
         {band.booking.events.map((event) => <li>{event}</li>)}
       </ul>
+      <p class="quote-blurb">
+        Because every venue, wedding, and corporate event is entirely unique —
+        varying in venue size, travel, and custom sound and lighting production —
+        we tailor every quote to fit the specific needs of your event. Submit a
+        Quote Request below or contact us to find out more.
+      </p>
+      <div class="cta-row">
+        <a class="btn" href="#quote-request">Quote Request</a>
+        <a class="btn btn--ghost" href={band.phoneHref}>Call {band.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="quote-request">
+    <div class="wrap quote">
+      <p class="eyebrow">Booking</p>
+      <h2>Quote request</h2>
+      <p class="quote__lead">
+        Tell us about your event and we&rsquo;ll put together a custom quote.
+        Submitting opens an email with your answers ready to send.
+      </p>
+
+      <form
+        class="quote-form"
+        data-quote-form
+        data-booking-email={band.bookingEmail}
+      >
+        <div class="quote-form__grid">
+          <label class="field">
+            <span class="field__label">Your name *</span>
+            <input type="text" name="name" required autocomplete="name" />
+          </label>
+          <label class="field">
+            <span class="field__label">Phone *</span>
+            <input type="tel" name="phone" required autocomplete="tel" />
+          </label>
+          <label class="field">
+            <span class="field__label">Email *</span>
+            <input type="email" name="email" required autocomplete="email" />
+          </label>
+          <label class="field">
+            <span class="field__label">Organization / couple (optional)</span>
+            <input type="text" name="organization" autocomplete="organization" />
+          </label>
+
+          <label class="field">
+            <span class="field__label">Type of event *</span>
+            <select name="eventType" required>
+              <option value="">Select one</option>
+              {eventTypes.map((type) => <option value={type}>{type}</option>)}
+            </select>
+          </label>
+          <label class="field">
+            <span class="field__label">Venue size / guest count *</span>
+            <select name="venueSize" required>
+              <option value="">Select one</option>
+              {venueSizes.map((size) => <option value={size}>{size}</option>)}
+            </select>
+          </label>
+          <label class="field field--wide">
+            <span class="field__label">Location (venue name &amp; city) *</span>
+            <input
+              type="text"
+              name="location"
+              required
+              placeholder="Venue name, city, state"
+            />
+          </label>
+          <label class="field">
+            <span class="field__label">Date of event *</span>
+            <input type="date" name="eventDate" required />
+          </label>
+          <label class="field">
+            <span class="field__label">Start time (optional)</span>
+            <input type="time" name="startTime" />
+          </label>
+          <label class="field">
+            <span class="field__label">Set length / end time (optional)</span>
+            <input
+              type="text"
+              name="setLength"
+              placeholder="e.g. 2×45 min sets, or until 11pm"
+            />
+          </label>
+          <label class="field">
+            <span class="field__label">Indoor or outdoor *</span>
+            <select name="setting" required>
+              <option value="">Select one</option>
+              <option value="Indoor">Indoor</option>
+              <option value="Outdoor">Outdoor</option>
+              <option value="Both / TBD">Both / TBD</option>
+            </select>
+          </label>
+
+          <label class="field field--wide">
+            <span class="field__label">Sound equipment *</span>
+            <select name="sound" required>
+              <option value="">Select one</option>
+              {soundOptions.map((opt) => <option value={opt}>{opt}</option>)}
+            </select>
+          </label>
+          <label class="field field--wide">
+            <span class="field__label">Lighting *</span>
+            <select name="lighting" required>
+              <option value="">Select one</option>
+              {
+                lightingOptions.map((opt) => (
+                  <option value={opt}>{opt}</option>
+                ))
+              }
+            </select>
+          </label>
+
+          <label class="field">
+            <span class="field__label">Power available on site?</span>
+            <select name="power">
+              <option value="">Select one</option>
+              <option value="Yes — standard venue power">
+                Yes — standard venue power
+              </option>
+              <option value="Limited / generator">Limited / generator</option>
+              <option value="Not sure">Not sure</option>
+            </select>
+          </label>
+          <label class="field">
+            <span class="field__label">Budget range (optional)</span>
+            <select name="budget">
+              <option value="">Prefer not to say</option>
+              <option value="Under $1,500">Under $1,500</option>
+              <option value="$1,500–$3,000">$1,500–$3,000</option>
+              <option value="$3,000–$5,000">$3,000–$5,000</option>
+              <option value="$5,000+">$5,000+</option>
+              <option value="Flexible / TBD">Flexible / TBD</option>
+            </select>
+          </label>
+
+          <label class="field field--wide">
+            <span class="field__label">Special song requests</span>
+            <textarea
+              name="songs"
+              rows="3"
+              placeholder="Must-plays, first dance, walk-up songs, do-not-plays…"
+            ></textarea>
+          </label>
+          <label class="field field--wide">
+            <span class="field__label">Anything else we should know?</span>
+            <textarea
+              name="notes"
+              rows="4"
+              placeholder="Travel details, load-in constraints, backline on site, vibe goals…"
+            ></textarea>
+          </label>
+        </div>
+
+        <div class="quote-form__actions">
+          <button class="btn" type="submit">Submit quote request</button>
+          <p class="quote-form__hint">
+            Opens your email app addressed to{' '}
+            <a href={`mailto:${band.bookingEmail}`}>{band.bookingEmail}</a>
+            {' '}with your answers filled in. Prefer a call?{' '}
+            <a href={band.phoneHref}>{band.phone}</a>
+          </p>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -36,10 +225,20 @@ import { band, socials } from '../data/band';
         <p class="eyebrow">Booking</p>
         <h2>Call or text</h2>
         <a class="phone" href={band.phoneHref}>{band.phone}</a>
+        <p class="email-line">
+          <a href={`mailto:${band.bookingEmail}`}>{band.bookingEmail}</a>
+        </p>
+      </div>
+      <div>
+        <p class="eyebrow">General</p>
+        <h2>Contact</h2>
+        <p class="email-line email-line--accent">
+          <a href={`mailto:${band.contactEmail}`}>{band.contactEmail}</a>
+        </p>
       </div>
       <div>
         <p class="eyebrow">Social</p>
-        <h2>Follow the flys</h2>
+        <h2>Follow the Soul Flys</h2>
         <ul class="socials">
           {
             socials.map((s) => (
@@ -56,10 +255,60 @@ import { band, socials } from '../data/band';
   </section>
 </BaseLayout>
 
+<script>
+  const form = document.querySelector('[data-quote-form]');
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!(form instanceof HTMLFormElement)) return;
+
+    const data = new FormData(form);
+    const get = (key: string) => String(data.get(key) ?? '').trim();
+
+    const lines = [
+      'New quote request from thesoulflys.com',
+      '',
+      `Name: ${get('name')}`,
+      `Phone: ${get('phone')}`,
+      `Email: ${get('email')}`,
+      `Organization / couple: ${get('organization') || '—'}`,
+      '',
+      `Type of event: ${get('eventType')}`,
+      `Venue size / guest count: ${get('venueSize')}`,
+      `Location: ${get('location')}`,
+      `Date of event: ${get('eventDate')}`,
+      `Start time: ${get('startTime') || '—'}`,
+      `Set length / end time: ${get('setLength') || '—'}`,
+      `Indoor / outdoor: ${get('setting')}`,
+      '',
+      `Sound: ${get('sound')}`,
+      `Lighting: ${get('lighting')}`,
+      `Power: ${get('power') || '—'}`,
+      `Budget range: ${get('budget') || '—'}`,
+      '',
+      'Special song requests:',
+      get('songs') || '—',
+      '',
+      'Additional notes:',
+      get('notes') || '—',
+    ];
+
+    const subject = `Quote request — ${get('eventType')} on ${get('eventDate')}`;
+    const body = lines.join('\n');
+    const bookingEmail =
+      form.getAttribute('data-booking-email') || 'booking@thesoulflys.com';
+    const mailto = `mailto:${bookingEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+  });
+</script>
+
 <style>
   .book-types {
     border-bottom: 1px solid var(--line);
     background: var(--bg-elevated);
+  }
+
+  .book-types__inner {
+    max-width: 42rem;
   }
 
   .event-list {
@@ -80,9 +329,106 @@ import { band, socials } from '../data/band';
     color: var(--accent);
   }
 
-  .contact {
+  .quote-blurb {
+    margin: 1.75rem 0 0;
+    max-width: 40rem;
+    color: var(--fg-muted);
+  }
+
+  .quote {
+    max-width: 48rem;
+  }
+
+  .quote__lead {
+    max-width: 38rem;
+    margin-bottom: 2rem;
+  }
+
+  .quote-form__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 1.5rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .field--wide {
+    grid-column: 1 / -1;
+  }
+
+  .field__label {
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    padding: 0.85rem 0.95rem;
+    border: 1px solid var(--line);
+    border-radius: 0;
+    background: var(--bg-elevated);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    outline: 1px solid var(--accent);
+    border-color: var(--accent);
+  }
+
+  .field select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--accent) 50%),
+      linear-gradient(135deg, var(--accent) 50%, transparent 50%);
+    background-position:
+      calc(100% - 1.15rem) calc(50% - 0.15rem),
+      calc(100% - 0.85rem) calc(50% - 0.15rem);
+    background-size: 0.35rem 0.35rem;
+    background-repeat: no-repeat;
+    padding-right: 2.25rem;
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 6rem;
+  }
+
+  .quote-form__actions {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .quote-form__hint {
+    margin: 0;
+    max-width: 34rem;
+    font-size: 0.95rem;
+    color: var(--fg-muted);
+  }
+
+  .quote-form__hint a {
+    color: var(--accent);
+  }
+
+  .contact {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
     padding-bottom: 2rem;
   }
@@ -99,6 +445,24 @@ import { band, socials } from '../data/band';
 
   .phone:hover {
     color: var(--fg);
+  }
+
+  .email-line {
+    margin: 1rem 0 0;
+  }
+
+  .email-line a {
+    font-family: var(--font-ui);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: var(--fg);
+  }
+
+  .email-line--accent a,
+  .email-line a:hover {
+    color: var(--accent);
   }
 
   .socials {
@@ -119,10 +483,16 @@ import { band, socials } from '../data/band';
     text-decoration: none;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 900px) {
     .contact {
       grid-template-columns: 1fr;
       gap: 2.5rem;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .quote-form__grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

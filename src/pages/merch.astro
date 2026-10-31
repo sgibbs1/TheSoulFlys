@@ -16,14 +16,14 @@ import { merch, formatPrice } from '../data/merch';
     imageAlt="The Soul Flys full band on stage"
   >
     <p>
-      Three official tees, $25 each. Stripe checkout and Shippo shipping rates
-      plug in next — designs are ready now.
+      Wear the vibe. Take a piece of the music home with you with official gear
+      from The Soul Flys. From soft graphic tees to custom accessories, this is
+      your chance to represent the community and look good doing it.
     </p>
   </PageHero>
 
   <section class="section section--tight">
     <div class="wrap">
-      <p class="merch-note">{merch.note}</p>
       <div class="merch-grid">
         {
           merch.products.map((product) => (
@@ -59,12 +59,6 @@ import { merch, formatPrice } from '../data/merch';
 </BaseLayout>
 
 <style>
-  .merch-note {
-    max-width: 40rem;
-    margin-bottom: 2.5rem;
-    color: var(--fg-muted);
-  }
-
   .merch-grid {
     display: grid;
     gap: 3rem 2rem;
