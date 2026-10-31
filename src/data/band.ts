@@ -2,8 +2,13 @@ export const band = {
   name: 'The Soul Flys',
   tagline: 'Psychedelic Soul Fusion',
   roots: 'Jazz · Rock · Funk · Classic Punk',
+  /** Short site / Open Graph description */
+  shortDescription:
+    "We are The Soul Flys, a Psychedelic Soul Fusion band with deep roots in Jazz, Rock, Funk, and Classic Punk. We don't just play a set—we build an entire world from the first note. Every show is a high-energy, contagious experience designed to pull you straight into the music.",
   phone: '(205) 855-8318',
   phoneHref: 'tel:+12058558318',
+  bookingEmail: 'booking@thesoulflys.com',
+  contactEmail: 'contact@thesoulflys.com',
   location: 'North Alabama',
   booking: {
     headline: 'Available for booking',
@@ -12,15 +17,15 @@ export const band = {
     events: ['Weddings', 'Corporate events', 'Festivals', 'Bars & venues'],
   },
   award: {
-    title: "2025 People's Choice Band of the Year",
+    title: "People's Choice Band of the Year",
     detail:
-      'Voted Best Band of 2025 by The Sand Mountain Reporter — 1st place in the People\'s Choice Best Band category.',
+      'Voted Best Band by The Sand Mountain Reporter — 1st place in the People\'s Choice Best Band category.',
   },
   journey: {
     headline: 'Our Journey',
     body: [
-      'The Soul Flys are a Psychedelic Soul Fusion band with deep roots in Jazz, Rock, Funk, and Classic Punk. They set the whole vibe and create an immersive musical experience — soul fusion, energetic performances, and a high vibe that makes every show contagious.',
-      'Their mission is to spread love and freedom of self-expression through music, and simply to have the best time following their calling. Join the journey and become part of a community that celebrates the power of music.',
+      "We are The Soul Flys, a Psychedelic Soul Fusion band with deep roots in Jazz, Rock, Funk, and Classic Punk. We don't just play a set—we build an entire world from the first note. Every show is a high-energy, contagious experience designed to pull you straight into the music.",
+      'Our mission is to spread love and absolute freedom of self-expression while doing what we love. Join the journey, catch a show, and become part of a community that lives for the power of music.',
     ],
   },
   about: {
@@ -32,7 +37,7 @@ export const band = {
     leftOfCenter: {
       title: 'Find your frequency',
       body:
-        'The Soul Flys are all about honest music and a good time. We mix the sounds we love, play from the heart, and invite everyone to lose themselves in the groove with us — no rules, just vibe.',
+        'We’re all about raw, honest music and a great time. By mixing the sounds we love and playing straight from the heart, we invite everyone to lose themselves in the groove with us—no rules, just vibe.',
     },
   },
   members: [

@@ -17,7 +17,7 @@ export type TipMethod = {
 export const tips = {
   headline: 'Tip the band',
   intro:
-    'Loved the show? Send a tip to keep the frequency flying. Venmo is live now — PayPal, Cash App, and more land when the business profiles are ready.',
+    'Keep the music flying. If you had a great time at the show or just want to support what we do, your tips go directly into helping us travel, write, and keep the groove alive. Every bit of love is deeply appreciated—thank you for being part of the journey.',
   methods: [
     {
       id: 'venmo',
