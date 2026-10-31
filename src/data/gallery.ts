@@ -9,6 +9,10 @@ export type GalleryImage = {
   zoomIn?: boolean;
   /** Sit at half width (for side-by-side zoom-out pairs) */
   half?: boolean;
+  /** CSS object-position for the image crop */
+  objectPosition?: string;
+  /** Override crop frame aspect ratio (e.g. '4 / 3') */
+  aspectRatio?: string;
 };
 
 export type GalleryVideo = {
@@ -34,9 +38,9 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: 'image',
-    src: '/gallery/g42.jpg',
-    alt: 'Cheryl Christmas mid-performance with arm raised',
-    caption: 'Raise it up',
+    src: '/gallery/g13.jpg',
+    alt: 'Cheryl Christmas singing live with The Soul Flys',
+    caption: 'Soul at the mic',
     zoomOut: true,
   },
   {
@@ -47,50 +51,9 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: 'image',
-    src: '/gallery/g43.jpg',
-    alt: 'TJ Cox on drums mid-set outdoors',
-    caption: 'Stick work',
-    zoomOut: true,
-  },
-  {
-    type: 'image',
-    src: '/gallery/g40.jpg',
-    alt: 'Cody Collum at the keys from behind',
-    caption: 'From the bench',
-  },
-  {
-    type: 'image',
-    src: '/gallery/g13.jpg',
-    alt: 'Cheryl Christmas singing live with The Soul Flys',
-    caption: 'Soul at the mic',
-    zoomOut: true,
-  },
-  {
-    type: 'image',
-    src: '/gallery/g20.jpg',
-    alt: 'Billy Christmas focused on five-string bass',
-    caption: 'Low end',
-  },
-  {
-    type: 'image',
-    src: '/gallery/g18.jpg',
-    alt: 'Shawn Gibbs playing lead guitar',
-    caption: 'Front and center',
-    zoomIn: true,
-  },
-  {
-    type: 'image',
-    src: '/gallery/g45.jpg',
-    alt: 'Cheryl Christmas with hair flying mid-vocal',
-    caption: 'Wind in the mic',
-    zoomOut: true,
-  },
-  {
-    type: 'image',
-    src: '/gallery/g28.jpg',
-    alt: 'TJ Cox at the drum kit',
-    caption: 'Heartbeat',
-    zoomIn: true,
+    src: '/gallery/g03.jpg',
+    alt: 'TJ Cox on drums with Billy Christmas on the right',
+    caption: 'Rhythm section',
   },
   {
     type: 'image',
@@ -106,15 +69,25 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: 'image',
-    src: '/gallery/g39.jpg',
-    alt: 'TJ Cox and Billy Christmas with The Soul Flys banner',
-    caption: 'Pocket & banner',
-  },
-  {
-    type: 'image',
     src: '/gallery/g15.jpg',
     alt: 'Shawn Gibbs on Telecaster under purple stage lights',
     caption: 'Telecaster talk',
+    zoomOut: true,
+    half: true,
+  },
+  {
+    type: 'image',
+    src: '/gallery/g11.jpg',
+    alt: 'The Soul Flys live energy',
+    caption: 'Contagious',
+    zoomOut: true,
+    half: true,
+  },
+  {
+    type: 'image',
+    src: '/gallery/g42.jpg',
+    alt: 'Cheryl Christmas mid-performance with arm raised',
+    caption: 'Raise it up',
     zoomOut: true,
     half: true,
   },
@@ -128,17 +101,62 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: 'image',
-    src: '/gallery/g22.jpg',
-    alt: 'Cody Collum on keys in magenta stage fog',
-    caption: 'Keys in the fog',
+    src: '/gallery/g40.jpg',
+    alt: 'Cody Collum at the keys from behind',
+    caption: 'From the bench',
   },
   {
     type: 'image',
-    src: '/gallery/g14.jpg',
-    alt: 'Cheryl Christmas leaning back into a vocal moment',
-    caption: 'Feel that note',
+    src: '/gallery/g20.jpg',
+    alt: 'Billy Christmas focused on five-string bass',
+    caption: 'Low end',
+  },
+  {
+    type: 'image',
+    src: '/gallery/g28.jpg',
+    alt: 'TJ Cox at the drum kit',
+    caption: 'Heartbeat',
+    zoomIn: true,
+  },
+  {
+    type: 'image',
+    src: '/gallery/g22.jpg',
+    alt: 'Cody Collum on keys in magenta stage fog',
+    caption: 'Keys in the fog',
+    zoomIn: true,
+  },
+  {
+    type: 'image',
+    src: '/gallery/g43.jpg',
+    alt: 'TJ Cox on drums mid-set outdoors',
+    caption: 'Stick work',
     zoomOut: true,
     half: true,
+  },
+  {
+    type: 'image',
+    src: '/gallery/g45.jpg',
+    alt: 'Cheryl Christmas with hair flying mid-vocal',
+    caption: 'Wind in the mic',
+    zoomOut: true,
+    half: true,
+  },
+  {
+    type: 'image',
+    src: '/gallery/g18.jpg',
+    alt: 'Shawn Gibbs playing lead guitar',
+    caption: 'Front and center',
+    zoomOut: true,
+    half: true,
+  },
+  {
+    type: 'image',
+    src: '/gallery/g36.jpg',
+    alt: 'The Soul Flys under purple stage lights',
+    caption: 'Under the lights',
+    zoomOut: true,
+    half: true,
+    objectPosition: '28% center',
   },
   {
     type: 'image',
@@ -150,15 +168,9 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: 'image',
-    src: '/gallery/g03.jpg',
-    alt: 'TJ Cox on drums with Billy Christmas on the right',
-    caption: 'Rhythm section',
-  },
-  {
-    type: 'image',
-    src: '/gallery/g11.jpg',
-    alt: 'The Soul Flys live energy',
-    caption: 'Contagious',
+    src: '/gallery/g39.jpg',
+    alt: 'TJ Cox and Billy Christmas with The Soul Flys banner',
+    caption: 'Pocket & banner',
     zoomOut: true,
     half: true,
   },
@@ -169,18 +181,16 @@ export const galleryItems: GalleryItem[] = [
     caption: 'Full frequency',
     zoomOut: true,
     half: true,
-  },
-  {
-    type: 'image',
-    src: '/gallery/g36.jpg',
-    alt: 'The Soul Flys full band under purple stage lights',
-    caption: 'The whole crew',
+    aspectRatio: '4 / 3',
   },
   {
     type: 'image',
     src: '/gallery/g21.jpg',
     alt: 'Shawn Gibbs and TJ Cox on guitar and drums',
     caption: 'Waterfront night',
+    zoomOut: true,
+    half: true,
+    aspectRatio: '4 / 3',
   },
 ];
 

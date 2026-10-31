@@ -12,8 +12,9 @@ import { merch, formatPrice } from '../data/merch';
   <PageHero
     eyebrow="Merch"
     title="Wear the frequency"
-    image="/images/hero-gallery.jpg"
-    imageAlt="The Soul Flys full band on stage"
+    image="/images/home-live.jpg"
+    imageAlt="The Soul Flys full band performing live under green stage lights"
+    imagePosition="center 18%"
   >
     <p>
       Wear the vibe. Take a piece of the music home with you with official gear
@@ -80,19 +81,23 @@ import { merch, formatPrice } from '../data/merch';
 
   .merch-item:nth-child(even) .merch-item__shot {
     order: 2;
+    justify-self: end;
   }
 
   .merch-item__shot {
     margin: 0;
+    width: fit-content;
+    max-width: 100%;
+    justify-self: start;
     overflow: hidden;
-    border: 1px solid var(--line);
-    background: #0a0807;
   }
 
   .merch-item__shot img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 20rem;
+    display: block;
   }
 
   .merch-item__copy h2 {
