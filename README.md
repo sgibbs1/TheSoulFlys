@@ -66,6 +66,21 @@ Replace `public/images/hero-placeholder.svg` with a real photo (e.g. `hero.jpg`)
    - **Build output directory:** `dist`
 4. Deploy. You’ll get a `*.pages.dev` URL.
 
+### Visit logging (band validation)
+
+`wrangler.toml` enables `assets.run_worker_first` so [`worker/index.js`](worker/index.js) runs on each page request before static files are served. It logs path, Access email (when Cloudflare Access is on), country, and user-agent.
+
+Assets directory is `./dist` (Astro’s build output), not `./public`.
+
+After deploy, open the project in Cloudflare → **Observability** / **Logs** and ask a member to open the site — you should see a `site_visit` line with their Access email when they sign in through Access.
+
+Local production-style check:
+
+```bash
+npm run build
+npx wrangler dev
+```
+
 ### Attach theSoulFlys.com
 
 1. In the Pages project → **Custom domains** → add `thesoulflys.com` and `www.thesoulflys.com`.

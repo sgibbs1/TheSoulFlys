@@ -1,0 +1,21 @@
+# Cloudflare Workers + static assets (Astro build output).
+# run_worker_first lets the Worker log every request before serving files.
+name = "the-soul-flys"
+compatibility_date = "2026-10-31"
+main = "./worker/index.js"
+upload_source_maps = true
+
+[assets]
+# Astro emits the site into dist/ (not public/)
+directory = "./dist"
+binding = "ASSETS"
+run_worker_first = true
+not_found_handling = "404-page"
+html_handling = "auto-trailing-slash"
+
+[observability]
+enabled = true
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
