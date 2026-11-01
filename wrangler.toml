@@ -1,5 +1,6 @@
 # Cloudflare Workers + static assets (Astro build output).
-# run_worker_first lets the Worker log every request before serving files.
+# run_worker_first is limited to HTML page paths so static assets
+# do not create Worker invocations.
 name = "the-soul-flys"
 compatibility_date = "2026-10-31"
 main = "./worker/index.js"
@@ -9,9 +10,24 @@ upload_source_maps = true
 # Astro emits the site into dist/ (not public/)
 directory = "./dist"
 binding = "ASSETS"
-run_worker_first = true
 not_found_handling = "404-page"
 html_handling = "auto-trailing-slash"
+# Only invoke the Worker for real pages (not /_astro, images, etc.)
+run_worker_first = [
+  "/",
+  "/about",
+  "/about/",
+  "/gallery",
+  "/gallery/",
+  "/shows",
+  "/shows/",
+  "/contact",
+  "/contact/",
+  "/merch",
+  "/merch/",
+  "/tip",
+  "/tip/"
+]
 
 [observability]
 enabled = true

@@ -1,47 +1,54 @@
 /**
- * Cloudflare Pages Functions middleware — runs before static assets.
- * Logs one entry per top-level page navigation (not CSS/JS/images/etc.).
+ * Cloudflare Pages Functions middleware.
+ * Invocations are limited to HTML pages via public/_routes.json.
+ * Logs once per successful HTML document response.
  */
 
-function isPageNavigation(request) {
-  if (request.method !== 'GET' && request.method !== 'HEAD') return false;
+function shouldLogVisit(request, response) {
+  if (request.method !== 'GET') return false;
+  if (response.status !== 200) return false;
 
   const dest = request.headers.get('Sec-Fetch-Dest');
-  // Modern browsers mark real page loads as document
-  if (dest === 'document') return true;
-  // Fallback for older clients / some previews: HTML navigations only
+  // Prefer real browser navigations; allow no dest only for HTML-first Accept
+  if (dest && dest !== 'document') return false;
   if (!dest) {
     const accept = request.headers.get('Accept') || '';
-    return accept.includes('text/html');
+    if (!accept.startsWith('text/html')) return false;
   }
-  return false;
+
+  const contentType = response.headers.get('content-type') || '';
+  return contentType.includes('text/html');
+}
+
+function logVisit(request) {
+  const url = new URL(request.url);
+  const user = request.headers.get('X-User') || 'anonymous';
+  const email =
+    request.headers.get('cf-access-authenticated-user-email') ||
+    request.headers.get('Cf-Access-Authenticated-User-Email') ||
+    null;
+
+  console.log(
+    JSON.stringify({
+      type: 'site_visit',
+      ts: new Date().toISOString(),
+      method: request.method,
+      path: url.pathname,
+      user,
+      email,
+      country: request.cf?.country ?? null,
+      city: request.cf?.city ?? null,
+      ua: request.headers.get('user-agent'),
+    }),
+  );
 }
 
 export async function onRequest(context) {
-  const { request } = context;
+  const response = await context.next();
 
-  if (isPageNavigation(request)) {
-    const url = new URL(request.url);
-    const user = request.headers.get('X-User') || 'anonymous';
-    const email =
-      request.headers.get('cf-access-authenticated-user-email') ||
-      request.headers.get('Cf-Access-Authenticated-User-Email') ||
-      null;
-
-    console.log(
-      JSON.stringify({
-        type: 'site_visit',
-        ts: new Date().toISOString(),
-        method: request.method,
-        path: url.pathname,
-        user,
-        email,
-        country: request.cf?.country ?? null,
-        city: request.cf?.city ?? null,
-        ua: request.headers.get('user-agent'),
-      }),
-    );
+  if (shouldLogVisit(context.request, response)) {
+    logVisit(context.request);
   }
 
-  return context.next();
+  return response;
 }

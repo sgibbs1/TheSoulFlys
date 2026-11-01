@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "include": [
+    "/",
+    "/about",
+    "/about/",
+    "/gallery",
+    "/gallery/",
+    "/shows",
+    "/shows/",
+    "/contact",
+    "/contact/",
+    "/merch",
+    "/merch/",
+    "/tip",
+    "/tip/"
+  ],
+  "exclude": [
+    "/_astro/*",
+    "/gallery/*",
+    "/images/*",
+    "/favicon.png",
+    "/favicon.svg",
+    "/robots.txt"
+  ]
+}

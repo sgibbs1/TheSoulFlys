@@ -68,11 +68,14 @@ Replace `public/images/hero-placeholder.svg` with a real photo (e.g. `hero.jpg`)
 
 ### Visit logging (band validation)
 
-`wrangler.toml` enables `assets.run_worker_first` so [`worker/index.js`](worker/index.js) runs on each page request before static files are served. It logs path, Access email (when Cloudflare Access is on), country, and user-agent.
+Page visits are logged once per HTML navigation:
 
-Assets directory is `./dist` (Astro’s build output), not `./public`.
+- Pages: [`functions/_middleware.js`](functions/_middleware.js) + [`public/_routes.json`](public/_routes.json) so Functions only run on real pages (not `/_astro`, images, etc.)
+- Workers: [`worker/index.js`](worker/index.js) with `run_worker_first` limited to the same page paths in `wrangler.toml`
 
-After deploy, open the project in Cloudflare → **Observability** / **Logs** and ask a member to open the site — you should see a `site_visit` line with their Access email when they sign in through Access.
+Each `site_visit` log includes path, `X-User`, Access email (when Access is on), country, and user-agent.
+
+After deploy, open the project in Cloudflare → **Observability** / **Logs** and ask a member to open the site — you should see one `site_visit` line per page they open.
 
 Local production-style check:
 
