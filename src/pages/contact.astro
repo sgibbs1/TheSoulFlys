@@ -71,14 +71,20 @@ const lightingOptions = [
       <h2>Quote request</h2>
       <p class="quote__lead">
         Tell us about your event and we&rsquo;ll put together a custom quote.
-        Submitting opens an email with your answers ready to send.
+        Submit the form and we&rsquo;ll get back to you.
       </p>
 
-      <form
-        class="quote-form"
-        data-quote-form
-        data-booking-email={band.bookingEmail}
-      >
+      <form class="quote-form" data-quote-form>
+        {/* Honeypot — leave empty; bots often fill it */}
+        <label class="hp" aria-hidden="true">
+          <span>Website</span>
+          <input
+            type="text"
+            name="website"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </label>
         <div class="quote-form__grid">
           <label class="field">
             <span class="field__label">Your name *</span>
@@ -207,12 +213,15 @@ const lightingOptions = [
         </div>
 
         <div class="quote-form__actions">
-          <button class="btn" type="submit">Submit quote request</button>
+          <button class="btn" type="submit" data-quote-submit>
+            Submit quote request
+          </button>
+          <p class="quote-form__status" data-quote-status hidden></p>
           <p class="quote-form__hint">
-            Opens your email app addressed to{' '}
-            <a href={`mailto:${band.bookingEmail}`}>{band.bookingEmail}</a>
-            {' '}with your answers filled in. Prefer a call?{' '}
+            We&rsquo;ll email you back from booking. Prefer a call?{' '}
             <a href={band.phoneHref}>{band.phone}</a>
+            {' '}or write{' '}
+            <a href={`mailto:${band.bookingEmail}`}>{band.bookingEmail}</a>.
           </p>
         </div>
       </form>
@@ -257,47 +266,56 @@ const lightingOptions = [
 
 <script>
   const form = document.querySelector('[data-quote-form]');
-  form?.addEventListener('submit', (event) => {
+  const statusEl = document.querySelector('[data-quote-status]');
+  const submitBtn = document.querySelector('[data-quote-submit]');
+
+  function setStatus(message: string, kind: 'ok' | 'err' | 'pending') {
+    if (!(statusEl instanceof HTMLElement)) return;
+    statusEl.hidden = false;
+    statusEl.dataset.kind = kind;
+    statusEl.textContent = message;
+  }
+
+  form?.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (!(form instanceof HTMLFormElement)) return;
 
-    const data = new FormData(form);
-    const get = (key: string) => String(data.get(key) ?? '').trim();
+    if (submitBtn instanceof HTMLButtonElement) {
+      submitBtn.disabled = true;
+    }
+    setStatus('Sending your quote request…', 'pending');
 
-    const lines = [
-      'New quote request from thesoulflys.com',
-      '',
-      `Name: ${get('name')}`,
-      `Phone: ${get('phone')}`,
-      `Email: ${get('email')}`,
-      `Organization / couple: ${get('organization') || '—'}`,
-      '',
-      `Type of event: ${get('eventType')}`,
-      `Venue size / guest count: ${get('venueSize')}`,
-      `Location: ${get('location')}`,
-      `Date of event: ${get('eventDate')}`,
-      `Start time: ${get('startTime') || '—'}`,
-      `Set length / end time: ${get('setLength') || '—'}`,
-      `Indoor / outdoor: ${get('setting')}`,
-      '',
-      `Sound: ${get('sound')}`,
-      `Lighting: ${get('lighting')}`,
-      `Power: ${get('power') || '—'}`,
-      `Budget range: ${get('budget') || '—'}`,
-      '',
-      'Special song requests:',
-      get('songs') || '—',
-      '',
-      'Additional notes:',
-      get('notes') || '—',
-    ];
+    try {
+      const response = await fetch('/api/quote', {
+        method: 'POST',
+        body: new FormData(form),
+      });
+      const payload = await response.json().catch(() => ({}));
 
-    const subject = `Quote request — ${get('eventType')} on ${get('eventDate')}`;
-    const body = lines.join('\n');
-    const bookingEmail =
-      form.getAttribute('data-booking-email') || 'booking@thesoulflys.com';
-    const mailto = `mailto:${bookingEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
+      if (!response.ok) {
+        throw new Error(
+          typeof payload?.error === 'string'
+            ? payload.error
+            : 'Could not send your request.',
+        );
+      }
+
+      form.reset();
+      setStatus(
+        'Got it — thanks! We’ll reply by email as soon as we can.',
+        'ok',
+      );
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : 'Could not send your request. Please try again or call us.';
+      setStatus(message, 'err');
+    } finally {
+      if (submitBtn instanceof HTMLButtonElement) {
+        submitBtn.disabled = false;
+      }
+    }
   });
 </script>
 
@@ -424,6 +442,34 @@ const lightingOptions = [
 
   .quote-form__hint a {
     color: var(--accent);
+  }
+
+  .quote-form__status {
+    margin: 0;
+    max-width: 34rem;
+    font-family: var(--font-ui);
+    font-size: 0.95rem;
+  }
+
+  .quote-form__status[data-kind='ok'] {
+    color: var(--accent);
+  }
+
+  .quote-form__status[data-kind='err'] {
+    color: #e8a0a0;
+  }
+
+  .quote-form__status[data-kind='pending'] {
+    color: var(--fg-muted);
+  }
+
+  .hp {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
   }
 
   .contact {

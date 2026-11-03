@@ -19,7 +19,13 @@ const {
 
 <section class="page-hero">
   <div class="page-hero__media" aria-hidden="true">
-    <img src={image} alt={imageAlt} style={`object-position: ${imagePosition}`} />
+    <img
+      src={image}
+      alt={imageAlt}
+      style={`object-position: ${imagePosition}`}
+      fetchpriority="high"
+      decoding="async"
+    />
     <div class="page-hero__veil"></div>
   </div>
   <div class="wrap page-hero__content">

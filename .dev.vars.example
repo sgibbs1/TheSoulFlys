@@ -1,0 +1,6 @@
+# Copy to .dev.vars for local `wrangler pages dev` / `wrangler dev`
+# Never commit .dev.vars
+
+RESEND_API_KEY=re_xxxxxxxx
+QUOTE_TO=thesoulflys@gmail.com
+QUOTE_FROM=The Soul Flys <onboarding@resend.dev>

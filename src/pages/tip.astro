@@ -44,6 +44,8 @@ import { tips } from '../data/tips';
                   alt={method.qrAlt ?? `${method.label} QR code`}
                   width="480"
                   height="560"
+                  loading="lazy"
+                  decoding="async"
                 />
               </figure>
             )}

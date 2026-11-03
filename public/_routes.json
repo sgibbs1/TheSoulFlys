@@ -13,7 +13,8 @@
     "/merch",
     "/merch/",
     "/tip",
-    "/tip/"
+    "/tip/",
+    "/api/quote"
   ],
   "exclude": [
     "/_astro/*",

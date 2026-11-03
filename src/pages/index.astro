@@ -6,7 +6,12 @@ import { band } from '../data/band';
 <BaseLayout path="/">
   <section class="hero">
     <div class="hero__media" aria-hidden="true">
-      <img src="/images/hero-home.jpg" alt="" />
+      <img
+        src="/images/hero-home.jpg"
+        alt=""
+        fetchpriority="high"
+        decoding="async"
+      />
       <div class="hero__veil"></div>
     </div>
     <div class="wrap hero__content">
@@ -45,6 +50,7 @@ import { band } from '../data/band';
           src="/images/home-live.jpg"
           alt="The Soul Flys full band performing live"
           loading="lazy"
+          decoding="async"
         />
       </figure>
       <div class="photo-feature__copy">
@@ -69,6 +75,7 @@ import { band } from '../data/band';
           src="/images/home-vocals.jpg"
           alt="The Soul Flys full band performing live under purple stage lights"
           loading="lazy"
+          decoding="async"
         />
       </figure>
       <div class="photo-feature__copy">

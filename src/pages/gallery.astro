@@ -44,6 +44,7 @@ import type { GalleryImage, GalleryVideo } from '../data/gallery';
                   src={item.src}
                   alt={item.alt}
                   loading="lazy"
+                  decoding="async"
                   style={
                     [
                       (item as GalleryImage).objectPosition &&

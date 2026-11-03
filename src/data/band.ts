@@ -44,6 +44,8 @@ export const band = {
     {
       name: 'Cheryl Christmas',
       role: 'Lead Vocalist',
+      photo: '/images/members/cheryl.jpg',
+      photoAlt: 'Cheryl Christmas singing live',
       blurb:
         'Classically trained powerhouse with a deep penchant for Rock, Soul, and Blues.',
       details: ['Rhythm Guitar', 'Songwriter / Lyricist'],
@@ -51,6 +53,8 @@ export const band = {
     {
       name: 'Shawn Gibbs',
       role: 'Lead Guitar',
+      photo: '/images/members/shawn.jpg',
+      photoAlt: 'Shawn Gibbs playing guitar live',
       blurb:
         "Weaving together searing leads and atmospheric textures to shape the core of the band's fusion sound.",
       details: [
@@ -64,6 +68,8 @@ export const band = {
     {
       name: 'TJ Cox',
       role: 'Drums',
+      photo: '/images/members/tj.jpg',
+      photoAlt: 'TJ Cox on drums live',
       blurb:
         "The pocket-groove engine driving the band's rhythm with multi-instrumental instinct.",
       details: ['Bass', 'Guitar'],
@@ -71,6 +77,8 @@ export const band = {
     {
       name: 'Cody Collum',
       role: 'Keyboard',
+      photo: '/images/members/cody.jpg',
+      photoAlt: 'Cody Collum at the keys live',
       blurb:
         'A multi-instrumental wizard layering soulful keys with roots-driven acoustic textures.',
       details: [
@@ -85,6 +93,8 @@ export const band = {
     {
       name: 'Billy Christmas',
       role: 'Bass',
+      photo: '/images/members/billy.jpg',
+      photoAlt: 'Billy Christmas playing bass live',
       blurb:
         'The driving force at the low end, locking down a heavy, infectious pocket that keeps the room moving.',
       details: ['Rhythm Guitar', 'Trumpet'],

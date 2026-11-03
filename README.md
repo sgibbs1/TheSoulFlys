@@ -66,6 +66,20 @@ Replace `public/images/hero-placeholder.svg` with a real photo (e.g. `hero.jpg`)
    - **Build output directory:** `dist`
 4. Deploy. You’ll get a `*.pages.dev` URL.
 
+### Quote form delivery (Resend + Pages Function)
+
+The contact quote form POSTs to [`functions/api/quote.js`](functions/api/quote.js), which emails you through [Resend](https://resend.com) (Cloudflare does not send outbound mail by itself).
+
+1. Create a free Resend account and an API key.
+2. In Cloudflare → your Pages project → **Settings** → **Environment variables**:
+   - `RESEND_API_KEY` = your Resend key (encrypt / secret)
+   - `QUOTE_TO` = `thesoulflys@gmail.com` (or later `booking@thesoulflys.com`)
+   - `QUOTE_FROM` = `The Soul Flys <onboarding@resend.dev>` until the domain is verified in Resend
+3. Redeploy the site after saving variables.
+4. Later, when DNS for the domain mailbox is ready: verify `thesoulflys.com` in Resend, then set `QUOTE_FROM` to something like `The Soul Flys <booking@thesoulflys.com>`.
+
+Local check: copy `.dev.vars.example` → `.dev.vars`, fill in the key, then `npm run build` and `npx wrangler pages dev dist`.
+
 ### Visit logging (band validation)
 
 Page visits are logged once per HTML navigation:
@@ -98,6 +112,7 @@ npx wrangler dev
 | Cloudflare Pages hosting | $0 |
 | SSL | $0 (included) |
 | Domain `theSoulFlys.com` | ~$10–15 / year |
+| Resend (quote emails) | $0 on free tier |
 | Google Calendar | $0 |
 | YouTube embeds | $0 |
 
