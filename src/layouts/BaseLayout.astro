@@ -52,7 +52,9 @@ const ogImageUrl = new URL('/images/og-image.png', Astro.site).toString();
     <header class="site-header">
       <div class="wrap site-header__inner">
         <a class="logo" href="/" aria-label={band.name}>
-          <img src="/images/logo.png" alt={band.name} width="160" height="160" />
+          <span class="logo__spin">
+            <img src="/images/logo.png" alt={band.name} width="160" height="160" />
+          </span>
         </a>
         <button
           class="nav-toggle"
@@ -171,16 +173,86 @@ const ogImageUrl = new URL('/images/og-image.png', Astro.site).toString();
     line-height: 0;
   }
 
+  .logo__spin {
+    position: relative;
+    display: block;
+    height: 4rem;
+    transform-origin: center center;
+    animation: logo-spin 30s ease-in-out infinite;
+  }
+
   .logo img {
     display: block;
     height: 4rem;
     width: auto;
-    transition: transform 0.25s ease, filter 0.25s ease;
+    transition: filter 0.25s ease;
+  }
+
+  .logo:hover .logo__spin {
+    animation-play-state: paused;
   }
 
   .logo:hover img {
-    transform: scale(1.04);
     filter: brightness(1.08);
+  }
+
+  /* Brief shine across the logo, mostly idle, once per 20s */
+  .logo__spin::after {
+    content: '';
+    position: absolute;
+    inset: 8%;
+    border-radius: 50%;
+    pointer-events: none;
+    background: linear-gradient(
+      115deg,
+      transparent 38%,
+      rgba(255, 255, 255, 0.15) 46%,
+      rgba(255, 255, 255, 0.85) 50%,
+      rgba(255, 255, 255, 0.15) 54%,
+      transparent 62%
+    );
+    mix-blend-mode: screen;
+    opacity: 0;
+    animation: logo-sparkle 20s ease-in-out infinite;
+  }
+
+  @keyframes logo-spin {
+    0%,
+    70% {
+      transform: rotate(0deg);
+    }
+    96% {
+      transform: rotate(360deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes logo-sparkle {
+    0%,
+    90% {
+      opacity: 0;
+      transform: translateX(-40%);
+    }
+    93% {
+      opacity: 1;
+    }
+    96% {
+      opacity: 0;
+      transform: translateX(40%);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(40%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo__spin,
+    .logo__spin::after {
+      animation: none;
+    }
   }
 
   .site-nav ul {
