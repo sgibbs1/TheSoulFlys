@@ -171,6 +171,7 @@ const ogImageUrl = new URL('/images/og-image.png', Astro.site).toString();
     align-items: center;
     text-decoration: none;
     line-height: 0;
+    perspective: 14rem;
   }
 
   .logo__spin {
@@ -178,6 +179,7 @@ const ogImageUrl = new URL('/images/og-image.png', Astro.site).toString();
     display: block;
     height: 4rem;
     transform-origin: center center;
+    transform-style: preserve-3d;
     animation: logo-spin 30s ease-in-out infinite;
   }
 
@@ -196,55 +198,63 @@ const ogImageUrl = new URL('/images/og-image.png', Astro.site).toString();
     filter: brightness(1.08);
   }
 
-  /* Brief shine across the logo, mostly idle, once per 20s */
+  /* Shine clipped to the colored logo (transparent PNG), once per 20s */
   .logo__spin::after {
     content: '';
     position: absolute;
-    inset: 8%;
-    border-radius: 50%;
+    inset: 0;
     pointer-events: none;
-    background: linear-gradient(
-      115deg,
-      transparent 38%,
-      rgba(255, 255, 255, 0.15) 46%,
-      rgba(255, 255, 255, 0.85) 50%,
-      rgba(255, 255, 255, 0.15) 54%,
-      transparent 62%
+    background-image: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.95) 50%,
+      transparent 60%
     );
+    background-repeat: no-repeat;
+    background-size: 240% 100%;
+    background-position: 140% 0;
     mix-blend-mode: screen;
-    opacity: 0;
+    -webkit-mask-image: url('/images/logo.png');
+    mask-image: url('/images/logo.png');
+    -webkit-mask-mode: alpha;
+    mask-mode: alpha;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
     animation: logo-sparkle 20s ease-in-out infinite;
   }
 
+  /* Horizontal card flip: left edge crosses over, mirrored at the midpoint */
   @keyframes logo-spin {
     0%,
     70% {
-      transform: rotate(0deg);
+      transform: rotateY(0deg);
     }
-    96% {
-      transform: rotate(360deg);
+    83% {
+      transform: rotateY(-180deg);
     }
+    96%,
     100% {
-      transform: rotate(360deg);
+      transform: rotateY(-360deg);
     }
   }
 
   @keyframes logo-sparkle {
     0%,
-    90% {
+    88% {
+      background-position: 140% 0;
       opacity: 0;
-      transform: translateX(-40%);
     }
-    93% {
+    91% {
       opacity: 1;
     }
-    96% {
-      opacity: 0;
-      transform: translateX(40%);
-    }
+    94%,
     100% {
+      background-position: -40% 0;
       opacity: 0;
-      transform: translateX(40%);
     }
   }
 
