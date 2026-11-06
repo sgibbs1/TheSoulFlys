@@ -180,7 +180,7 @@ const ogImageUrl = new URL('/images/og-image.png', Astro.site).toString();
     height: 4rem;
     transform-origin: center center;
     transform-style: preserve-3d;
-    animation: logo-spin 15s ease-in-out infinite;
+    animation: logo-spin 15s linear infinite;
   }
 
   .logo img {
@@ -199,7 +199,7 @@ const ogImageUrl = new URL('/images/og-image.png', Astro.site).toString();
     filter: brightness(1.08);
   }
 
-  /* Shine clipped to the colored logo, at the start and end of each flip */
+  /* Shine clipped to the colored logo, just after the flip starts and just before it lands */
   .logo__spin::after {
     content: '';
     position: absolute;
@@ -225,7 +225,7 @@ const ogImageUrl = new URL('/images/og-image.png', Astro.site).toString();
     mask-repeat: no-repeat;
     -webkit-mask-position: center;
     mask-position: center;
-    animation: logo-sparkle 15s ease-in-out infinite;
+    animation: logo-sparkle 15s linear infinite;
   }
 
   /* Horizontal card flip every 15s: left edge crosses over, mirrored at the midpoint */
@@ -245,26 +245,36 @@ const ogImageUrl = new URL('/images/og-image.png', Astro.site).toString();
 
   @keyframes logo-sparkle {
     0%,
-    20% {
-      background-position: 140% 0;
+    25% {
+      background-position: 160% 0;
       opacity: 0;
     }
-    22% {
+    28% {
       opacity: 1;
+      background-position: 120% 0;
     }
-    26%,
-    74% {
+    40% {
+      opacity: 1;
+      background-position: -20% 0;
+    }
+    43%,
+    61% {
       background-position: -40% 0;
       opacity: 0;
     }
-    76% {
-      background-position: 140% 0;
+    63% {
       opacity: 0;
+      background-position: 160% 0;
     }
-    78% {
+    65% {
       opacity: 1;
+      background-position: 120% 0;
     }
-    82%,
+    76% {
+      opacity: 1;
+      background-position: -20% 0;
+    }
+    79%,
     100% {
       background-position: -40% 0;
       opacity: 0;
