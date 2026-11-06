@@ -35,6 +35,14 @@ export const merch = {
       image: '/images/merch/tee-circle.jpg',
       imageAlt: 'Black The Soul Flys t-shirt with multicolor circle logo',
     },
+    {
+      id: 'tee-drip',
+      name: 'Paint Drip Tee',
+      description: 'Black short-sleeve tee with THE SOUL FLYS in gold brush lettering and neon paint drips.',
+      priceCents: 2500,
+      image: '/images/merch/tee-drip.jpg',
+      imageAlt: 'Black The Soul Flys t-shirt with gold paint-drip lettering',
+    },
   ] satisfies MerchProduct[],
 } as const;
 
