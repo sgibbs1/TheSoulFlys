@@ -4,8 +4,7 @@ export const band = {
   roots: 'High Energy · Positive Vibe · Soul-Infused Rock · Funkadelic Blues',
   heroLeadLines: [
     'High Energy · Positive Vibe · Soul-Infused Rock · Funkadelic Blues.',
-    'Specializing in honest, soulful expression and immersive live shows.',
-    'Hailing from North Alabama.',
+    'Specializing in honest, soulful expression and immersive live shows. Hailing from North Alabama.',
   ],
   /** Short site / Open Graph description */
   shortDescription:
