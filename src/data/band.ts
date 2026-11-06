@@ -1,9 +1,12 @@
 export const band = {
   name: 'The Soul Flys',
   tagline: 'Psychedelic Soul Fusion',
-  roots: 'High Energy · Soul-Infused Rock · Funkadelic Blues · Positive Vibe',
-  heroLead:
-    'High Energy · Soul-Infused Rock · Funkadelic Blues · Positive Vibe. Specializing in honest, soulful expression and immersive live shows. Hailing from North Alabama.',
+  roots: 'High Energy · Positive Vibe · Soul-Infused Rock · Funkadelic Blues',
+  heroLeadLines: [
+    'High Energy · Positive Vibe · Soul-Infused Rock · Funkadelic Blues.',
+    'Specializing in honest, soulful expression and immersive live shows.',
+    'Hailing from North Alabama.',
+  ],
   /** Short site / Open Graph description */
   shortDescription:
     "We are The Soul Flys, a Psychedelic Soul Fusion band with deep roots in Jazz, Rock, Funk, and Classic Punk. We don't just play a set—we build an entire world from the first note. Every show is a high-energy, contagious experience designed to pull you straight into the music.",
