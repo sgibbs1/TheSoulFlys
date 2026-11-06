@@ -14,7 +14,12 @@ export const band = {
     headline: 'Available for booking',
     intro:
       'Looking for a high-vibe live band? The Soul Flys bring psychedelic soul fusion to stages of every size.',
-    events: ['Weddings', 'Corporate events', 'Festivals', 'Bars & venues'],
+    events: [
+      'Corporate and Private Events',
+      'Live Music Venues',
+      'Festivals',
+      'Weddings',
+    ],
   },
   award: {
     title: "People's Choice Band of the Year",
