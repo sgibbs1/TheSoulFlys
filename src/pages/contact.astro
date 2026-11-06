@@ -4,6 +4,13 @@ import PageHero from '../components/PageHero.astro';
 import { band, socials } from '../data/band';
 
 const eventTypes = [...band.booking.events, 'Private party', 'Other'];
+/** Contact page grid: two columns, two rows (no mid-phrase wrap) */
+const bookingEventGrid = [
+  'Corporate and Private Events',
+  'Festivals',
+  'Live Music Venues',
+  'Weddings',
+] as const;
 const venueSizes = [
   'Under 50 guests',
   '50–100 guests',
@@ -50,7 +57,7 @@ const lightingOptions = [
       <p class="eyebrow">{band.booking.headline}</p>
       <h2>Book the Soul Flys</h2>
       <ul class="event-list">
-        {band.booking.events.map((event) => <li>{event}</li>)}
+        {bookingEventGrid.map((event) => <li>{event}</li>)}
       </ul>
       <p class="quote-blurb">
         Because every venue, wedding, and corporate event is entirely unique —
@@ -334,9 +341,11 @@ const lightingOptions = [
     margin: 1.25rem 0 0;
     padding: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem 1.5rem;
-    max-width: 36rem;
+    grid-template-columns: max-content max-content;
+    justify-content: start;
+    column-gap: clamp(2rem, 8vw, 5rem);
+    row-gap: 0.75rem;
+    max-width: none;
   }
 
   .event-list li {
@@ -346,6 +355,17 @@ const lightingOptions = [
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--accent);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 560px) {
+    .event-list {
+      grid-template-columns: 1fr;
+    }
+
+    .event-list li {
+      white-space: normal;
+    }
   }
 
   .quote-blurb {
