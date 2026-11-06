@@ -180,7 +180,7 @@ const ogImageUrl = new URL('/images/og-image.png', Astro.site).toString();
     height: 4rem;
     transform-origin: center center;
     transform-style: preserve-3d;
-    animation: logo-spin 30s ease-in-out infinite;
+    animation: logo-spin 15s ease-in-out infinite;
   }
 
   .logo img {
@@ -190,7 +190,8 @@ const ogImageUrl = new URL('/images/og-image.png', Astro.site).toString();
     transition: filter 0.25s ease;
   }
 
-  .logo:hover .logo__spin {
+  .logo:hover .logo__spin,
+  .logo:hover .logo__spin::after {
     animation-play-state: paused;
   }
 
@@ -198,7 +199,7 @@ const ogImageUrl = new URL('/images/og-image.png', Astro.site).toString();
     filter: brightness(1.08);
   }
 
-  /* Shine clipped to the colored logo (transparent PNG), once per 20s */
+  /* Shine clipped to the colored logo, at the start and end of each flip */
   .logo__spin::after {
     content: '';
     position: absolute;
@@ -224,19 +225,19 @@ const ogImageUrl = new URL('/images/og-image.png', Astro.site).toString();
     mask-repeat: no-repeat;
     -webkit-mask-position: center;
     mask-position: center;
-    animation: logo-sparkle 20s ease-in-out infinite;
+    animation: logo-sparkle 15s ease-in-out infinite;
   }
 
-  /* Horizontal card flip: left edge crosses over, mirrored at the midpoint */
+  /* Horizontal card flip every 15s: left edge crosses over, mirrored at the midpoint */
   @keyframes logo-spin {
     0%,
-    70% {
+    22% {
       transform: rotateY(0deg);
     }
-    83% {
+    50% {
       transform: rotateY(-180deg);
     }
-    96%,
+    78%,
     100% {
       transform: rotateY(-360deg);
     }
@@ -244,14 +245,26 @@ const ogImageUrl = new URL('/images/og-image.png', Astro.site).toString();
 
   @keyframes logo-sparkle {
     0%,
-    88% {
+    20% {
       background-position: 140% 0;
       opacity: 0;
     }
-    91% {
+    22% {
       opacity: 1;
     }
-    94%,
+    26%,
+    74% {
+      background-position: -40% 0;
+      opacity: 0;
+    }
+    76% {
+      background-position: 140% 0;
+      opacity: 0;
+    }
+    78% {
+      opacity: 1;
+    }
+    82%,
     100% {
       background-position: -40% 0;
       opacity: 0;
